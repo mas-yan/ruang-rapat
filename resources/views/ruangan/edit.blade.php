@@ -23,9 +23,18 @@
                         </div>
 
                         <!-- Fasilitas -->
-                        <div>
+                        <div class="mt-4">
                             <x-input-label for="fasilitas" :value="__('Fasilitas')" />
-                            <div class="grid grid-cols-3 gap-4 mt-3">
+                            <select name="fasilitas[]" multiple="multiple" id="fasilitas"
+                                class="mt-1 block w-full rounded">
+                                @foreach ($fasilitas as $item)
+                                    <option value="{{ $item }}"
+                                        {{ in_array($item, old('fasilitas', $ruangFas)) ? 'selected' : '' }}>
+                                        {{ $item }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            {{-- <div class="grid grid-cols-3 gap-4 mt-3">
                                 @foreach ($fasilitas as $item)
                                     <div>
                                         <label class="inline-flex items-center">
@@ -36,7 +45,7 @@
                                         </label>
                                     </div>
                                 @endforeach
-                            </div>
+                            </div> --}}
                         </div>
 
                         <!-- Kapasitas -->

@@ -21,7 +21,13 @@
                             </div>
                             <div>
                                 <x-input-label for="fasilitas" :value="__('Fasilitas')" />
-                                <div class="grid grid-cols-3 gap-4 mt-3">
+                                <select name="fasilitas[]" multiple="multiple" id="fasilitas"
+                                    class="mt-1 block w-full rounded">
+                                    @foreach ($fasilitas as $item)
+                                        <option value="{{ $item }}">{{ $item }}</option>
+                                    @endforeach
+                                </select>
+                                {{-- <div class="grid grid-cols-3 gap-4 mt-3">
                                     @foreach ($fasilitas as $item)
                                         <div>
                                             <label class="inline-flex items-center">
@@ -31,7 +37,7 @@
                                             </label>
                                         </div>
                                     @endforeach
-                                </div>
+                                </div> --}}
                             </div>
 
                             <div>
