@@ -4,7 +4,9 @@
             {{ __('Pinjam Ruang Rapat') }}
         </h2>
     </x-slot>
-
+    @push('style')
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    @endpush
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -22,7 +24,7 @@
                             <div>
                                 <x-input-label for="fasilitas" :value="__('Fasilitas')" />
                                 <select name="fasilitas[]" multiple="multiple" id="fasilitas"
-                                    class="mt-1 block w-full rounded">
+                                    class="mt-1 block w-full rounded select">
                                     @foreach ($fasilitas as $item)
                                         <option value="{{ $item }}">{{ $item }}</option>
                                     @endforeach
@@ -50,24 +52,23 @@
                         </div>
                         <x-primary-button>Tambah</x-primary-button>
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
 
-    @push('style')
-        <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
-        <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.tailwindcss.css" />
-    @endpush
     @push('scripts')
         <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
             integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
-        <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
-        <script>
-            console.log('dev');
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-            new DataTable('#example');
+        <script>
+            $(document).ready(function() {
+                $('.select').select2({
+                    placeholder: "Pilih Fasilitas",
+                    allowClear: true
+                });
+            });
         </script>
     @endpush
 </x-app-layout>
