@@ -21,7 +21,8 @@ class RuanganController extends Controller
      */
     public function create()
     {
-        return view('ruangan.create');
+        $fasilitas = ['TV', 'Microphone', 'Kamera', 'Proyektor', 'Wall Screen Proyektor', 'Papan Tulis Jepit'];
+        return view('ruangan.create', compact('fasilitas'));
     }
 
     /**
@@ -37,7 +38,7 @@ class RuanganController extends Controller
 
         $data = Ruangan::create([
             'ruangan' => $request->nama_ruangan,
-            'fasilitas' => $request->fasilitas,
+            'fasilitas' => implode(",", $request->fasilitas),
             'kapasitas' => $request->kapasitas,
         ]);
 
@@ -58,7 +59,9 @@ class RuanganController extends Controller
     public function edit($id)
     {
         $ruangan = Ruangan::findOrFail($id);
-        return view('ruangan.edit', compact('ruangan'));
+        $fasilitas = ['TV', 'Microphone', 'Kamera', 'Proyektor', 'Wall Screen Proyektor', 'Papan Tulis Jepit'];
+        $ruangFas = explode(",", $ruangan->fasilitas);
+        return view('ruangan.edit', compact('ruangan', 'fasilitas', 'ruangFas'));
     }
 
     /**

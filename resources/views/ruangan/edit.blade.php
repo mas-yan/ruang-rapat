@@ -9,15 +9,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                     <form action="{{ route('ruangan.update', $ruangan->id) }}" method="POST">
                         @csrf
                         @method('PUT')
@@ -32,11 +23,20 @@
                         </div>
 
                         <!-- Fasilitas -->
-                        <div class="mt-4">
+                        <div>
                             <x-input-label for="fasilitas" :value="__('Fasilitas')" />
-                            <x-text-input id="fasilitas" name="fasilitas" :value="old('fasilitas', $ruangan->fasilitas)" type="text"
-                                class="mt-1 block w-full" required placeholder="Fasilitas" />
-                            <x-input-error class="mt-2" :messages="$errors->get('fasilitas')" />
+                            <div class="grid grid-cols-3 gap-4 mt-3">
+                                @foreach ($fasilitas as $item)
+                                    <div>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" name="fasilitas[]" value="{{ $item }}"
+                                                class="form-checkbox h-5 w-5 text-blue-600"
+                                                {{ in_array($item, old('fasilitas', $ruangFas)) ? 'checked' : '' }}>
+                                            <span class="ml-2 text-gray-700">{{ $item }}</span>
+                                        </label>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
 
                         <!-- Kapasitas -->

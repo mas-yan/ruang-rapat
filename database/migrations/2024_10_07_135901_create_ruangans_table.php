@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('ruangan');
             $table->string('fasilitas');
+            // $table->enum('fasilitas', ['TV', 'Microphone', 'Kamera', 'Proyektor', 'Wall Screen Proyektor', 'Papan Tulis Jepit']);
             $table->integer('kapasitas');
             $table->timestamps();
         });

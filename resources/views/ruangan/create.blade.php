@@ -21,11 +21,19 @@
                             </div>
                             <div>
                                 <x-input-label for="fasilitas" :value="__('Fasilitas')" />
-                                <x-text-input id="fasilitas" name="fasilitas" :value="old('fasilitas')" type="text"
-                                    class="mt-1 block w-full" required placeholder="Fasilitas" autofocus
-                                    autocomplete="fasilitas" />
-                                <x-input-error class="mt-2" :messages="$errors->get('fasilitas')" />
+                                <div class="grid grid-cols-3 gap-4 mt-3">
+                                    @foreach ($fasilitas as $item)
+                                        <div>
+                                            <label class="inline-flex items-center">
+                                                <input type="checkbox" name="fasilitas[]" value="{{ $item }}"
+                                                    class="form-checkbox h-5 w-5 text-blue-600">
+                                                <span class="ml-2 text-gray-700">{{ $item }}</span>
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
+
                             <div>
                                 <x-input-label for="kapasitas" :value="__('Kapasitas')" />
                                 <x-text-input id="kapasitas" name="kapasitas" :value="old('kapasitas')" type="number"

@@ -38,7 +38,7 @@
                     </div>
                     <!-- Ruangan -->
                     <div class="mt-4">
-                        <x-input-label for="ruangan_id" :value="__('Ruangan')" />
+                        <x-input-label for="ruangan_id" :value="__('Silahkan pilih ruangan')" />
                         <select id="ruangan_id" name="ruangan_id" class="mt-1 block w-full rounded">
                             @foreach ($ruangans as $ruangan)
                                 <option value="{{ $ruangan->id }}"
@@ -85,9 +85,16 @@
                     <!-- Konsumsi -->
                     <div class="mt-4">
                         <x-input-label for="konsumsi" :value="__('Konsumsi')" />
-                        <x-text-input id="konsumsi" name="konsumsi" :value="old('konsumsi', $booking->konsumsi)" type="text"
-                            class="mt-1 block w-full" required />
-                        <x-input-error class="mt-2" :messages="$errors->get('konsumsi')" />
+                        <select id="konsumsi" name="konsumsi" class="mt-1 block w-full rounded">
+                            <option value="makanan besar"
+                                {{ old('konsumsi', $booking->konsumsi) == 'makanan besar' ? 'selected' : '' }}>
+                                Makanan Besar
+                            </option>
+                            <option value="makanan ringan"
+                                {{ old('konsumsi', $booking->konsumsi) == 'makanan ringan' ? 'selected' : '' }}>
+                                Makanan Ringan
+                            </option>
+                        </select>
                     </div>
 
                     <div class="mt-4">
